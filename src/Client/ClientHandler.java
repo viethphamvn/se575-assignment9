@@ -21,14 +21,7 @@ public class ClientHandler implements Runnable{
 
     @Override
     public void run() {
-        //sendResult(processClientInput(getClientInput()));
-        try {
-            PrintWriter printWriter = new PrintWriter(clientSocket.getOutputStream(), true);
-            printWriter.println("Connected");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        sendResult(processClientInput(getClientInput()));
     }
 
     private void sendResult(List<String> result) {
@@ -38,6 +31,7 @@ public class ClientHandler implements Runnable{
             for(String line : result){
                 writer.println(line);
             }
+            writer.println("done");
             closeConnection(writer);
         } catch (IOException e) {
             e.printStackTrace();
