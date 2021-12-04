@@ -1,3 +1,5 @@
+package Utils;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -19,7 +21,10 @@ public class Alphabetizer {
 		return lines;
 	}
 
-	public void addToAlphabetizedSet(String line) {
-		tree.add(line);
+	public List<String> alphabetize(List<String> lines) {
+		for (String line : lines){
+			tree.add(line);
+		}
+		return getAlphabetizedLines();
 	}
 }

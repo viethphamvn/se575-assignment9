@@ -1,19 +1,29 @@
+package Utils;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
 public class CircularShifter {
+	private List<String> circularShiftedLines;
+
+	public List<String> shiftLines(List<String> lines){
+		circularShiftedLines = new ArrayList<>();
+		for (String line : lines){
+			shiftLine(line);
+		}
+		return circularShiftedLines;
+	}
 
 	public void shiftLine(String line) {
-		String shiftedLine = line;
+		circularShiftedLines.add(line);
 
 		List<String> bagOfWords = tokenize(line);
 		int numberOfShifts = bagOfWords.size() - 1;
 
-		shiftedLine(shiftedLine);
 		for (int i = 0; i < numberOfShifts; i++) {
-			shiftedLine = shiftWords(bagOfWords);
-			shiftedLine(shiftedLine);
+			String shiftedLine = shiftWords(bagOfWords);
+			circularShiftedLines.add(shiftedLine);
 			bagOfWords = tokenize(shiftedLine);
 		}
 	}
